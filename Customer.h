@@ -99,7 +99,15 @@ BankAccount* findAccount(const string& number) {
         if (account->getAccountNumber() == number)
             return account;
     }
+
     return 0;
+}
+void addTransaction(const string& transaction) {
+    transactions.push_back(transaction);
+}
+
+const vector<string>& getTransactions() const {
+    return transactions;
 }
 };
 
