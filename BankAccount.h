@@ -141,6 +141,7 @@ public:
         file.write(reinterpret_cast<const char *>(&balance), sizeof(balance));
         file.write(reinterpret_cast<const char *>(&minimumBalance), sizeof(minimumBalance));
     }
+    
 };
 
 #endif
