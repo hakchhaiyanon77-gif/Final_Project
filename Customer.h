@@ -34,6 +34,26 @@ public:
       address(customerAddress),
       username(user),
       password(pass) {}
+
+    string getCustomerId() const {
+    return customerId;
+}
+
+string getFullName() const {
+    return fullName;
+}
+
+string getPhone() const {
+    return phone;
+}
+
+string getAddress() const {
+    return address;
+}
+
+string getUsername() const {
+    return username;
+}
 };
 
 #endif
