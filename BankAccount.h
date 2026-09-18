@@ -100,3 +100,47 @@ public:
         file.write(reinterpret_cast<const char *>(&interestRate), sizeof(interestRate));
     }
 };
+
+class CurrentAccount : public BankAccount
+{
+private:
+    double minimumBalance;
+
+public:
+    CurrentAccount() : BankAccount(), minimumBalance(0.0) {}
+
+    CurrentAccount(const string &number, double initialBalance, double minimum = 0.0)
+        : BankAccount(number, initialBalance), minimumBalance(minimum) {}
+
+    string getAccountType() const override { return "Current Account"; }
+
+    double getMinimumBalance() const { return minimumBalance; }
+
+    bool withdraw(double amount) override
+    {
+        if (amount <= 0 || balance - amount < minimumBalance)
+            return false;
+        balance -= amount;
+        return true;
+    }
+
+    void displayAccount() const override
+    {
+        BankAccount::displayAccount();
+        cout << "Minimum Balance: $" << fixed << setprecision(2)
+             << minimumBalance << endl;
+    }
+
+    void save(ofstream &file) const override
+    {
+        int type = 2;
+        file.write(reinterpret_cast<const char *>(&type), sizeof(type));
+        int length = static_cast<int>(accountNumber.size());
+        file.write(reinterpret_cast<const char *>(&length), sizeof(length));
+        file.write(accountNumber.c_str(), length);
+        file.write(reinterpret_cast<const char *>(&balance), sizeof(balance));
+        file.write(reinterpret_cast<const char *>(&minimumBalance), sizeof(minimumBalance));
+    }
+};
+
+#endif
