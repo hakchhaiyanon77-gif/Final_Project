@@ -94,6 +94,13 @@ vector<BankAccount*>& getAccounts() {
 const vector<BankAccount*>& getAccounts() const {
     return accounts;
 }
+BankAccount* findAccount(const string& number) {
+    for (BankAccount* account : accounts) {
+        if (account->getAccountNumber() == number)
+            return account;
+    }
+    return 0;
+}
 };
 
 #endif
