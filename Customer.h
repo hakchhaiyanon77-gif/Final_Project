@@ -54,6 +54,12 @@ string getAddress() const {
 string getUsername() const {
     return username;
 }
+bool checkPassword(const string& pass) const {
+    return password == pass;
+}
+void setPassword(const string& newPassword) {
+    password = newPassword;
+}
 };
 
 #endif
