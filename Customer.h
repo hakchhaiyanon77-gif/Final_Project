@@ -131,6 +131,48 @@ void displayAccounts() const {
         accounts[i]->displayAccount();
     }
 }
+void save(ofstream& file) const {
+    int length;
+
+    length = static_cast<int>(customerId.size());
+    file.write(reinterpret_cast<const char*>(&length), sizeof(length));
+    file.write(customerId.c_str(), length);
+
+    length = static_cast<int>(fullName.size());
+    file.write(reinterpret_cast<const char*>(&length), sizeof(length));
+    file.write(fullName.c_str(), length);
+
+    length = static_cast<int>(phone.size());
+    file.write(reinterpret_cast<const char*>(&length), sizeof(length));
+    file.write(phone.c_str(), length);
+
+    length = static_cast<int>(address.size());
+    file.write(reinterpret_cast<const char*>(&length), sizeof(length));
+    file.write(address.c_str(), length);
+
+    length = static_cast<int>(username.size());
+    file.write(reinterpret_cast<const char*>(&length), sizeof(length));
+    file.write(username.c_str(), length);
+
+    length = static_cast<int>(password.size());
+    file.write(reinterpret_cast<const char*>(&length), sizeof(length));
+    file.write(password.c_str(), length);
+
+    int accountCount = static_cast<int>(accounts.size());
+    file.write(reinterpret_cast<const char*>(&accountCount), sizeof(accountCount));
+
+    for (BankAccount* account : accounts)
+        account->save(file);
+
+    int transactionCount = static_cast<int>(transactions.size());
+    file.write(reinterpret_cast<const char*>(&transactionCount), sizeof(transactionCount));
+
+    for (const string& transaction : transactions) {
+        length = static_cast<int>(transaction.size());
+        file.write(reinterpret_cast<const char*>(&length), sizeof(length));
+        file.write(transaction.c_str(), length);
+    }
+}
 };
 
 #endif
