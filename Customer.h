@@ -83,12 +83,9 @@ const vector<BankAccount*>& getAccounts() const {
     return accounts;
 }
 void addAccount(BankAccount* account) {
-    if (account != 0)
+    if (account != 0){
         accounts.push_back(account);
-}
-
-vector<BankAccount*>& getAccounts() {
-    return accounts;
+    }       
 }
 
 const vector<BankAccount*>& getAccounts() const {
