@@ -109,6 +109,28 @@ void addTransaction(const string& transaction) {
 const vector<string>& getTransactions() const {
     return transactions;
 }
+void displayInfo() const {
+    cout << "\n----------------------------------------" << endl;
+    cout << "Customer ID : " << customerId << endl;
+    cout << "Name        : " << fullName << endl;
+    cout << "Phone       : " << phone << endl;
+    cout << "Address     : " << address << endl;
+    cout << "Username    : " << username << endl;
+    cout << "Accounts    : " << accounts.size() << endl;
+    cout << "----------------------------------------" << endl;
+}
+
+void displayAccounts() const {
+    if (accounts.empty()) {
+        cout << "No bank accounts found." << endl;
+        return;
+    }
+
+    for (size_t i = 0; i < accounts.size(); ++i) {
+        cout << "\nAccount " << i + 1 << endl;
+        accounts[i]->displayAccount();
+    }
+}
 };
 
 #endif
