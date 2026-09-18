@@ -60,6 +60,17 @@ bool checkPassword(const string& pass) const {
 void setPassword(const string& newPassword) {
     password = newPassword;
 }
+void setFullName(const string& name) {
+    fullName = name;
+}
+
+void setPhone(const string& number) {
+    phone = number;
+}
+
+void setAddress(const string& newAddress) {
+    address = newAddress;
+}
 };
 
 #endif
